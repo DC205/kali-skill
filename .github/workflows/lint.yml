@@ -13,7 +13,7 @@ jobs:
   skill:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: SKILL.md keeps its frontmatter (name + description)
         run: |
           head -1 SKILL.md | grep -qx -- "---"
