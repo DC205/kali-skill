@@ -1,0 +1,21 @@
+name: lint
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  skill:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: SKILL.md keeps its frontmatter (name + description)
+        run: |
+          head -1 SKILL.md | grep -qx -- "---"
+          sed -n "2,/^---$/p" SKILL.md | grep -q "^name: "
+          sed -n "2,/^---$/p" SKILL.md | grep -q "^description: "
